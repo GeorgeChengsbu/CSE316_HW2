@@ -11,6 +11,9 @@ export default class DBManager {
         let list = localStorage.getItem("top5-list-" + key);
         return list != null;
     }
+    mutationDeleteItem = (key) => {
+        localStorage.removeItem("top5-list-"+key);
+    }
 
     /**
      * This query asks local storage for a list with a particular key,

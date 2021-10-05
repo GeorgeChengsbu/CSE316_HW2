@@ -136,6 +136,30 @@ class App extends React.Component {
             this.showDeleteListModal();
         });
     }
+    deletionStart() {
+        let key = this.state.keyNamePairMarkedForDeletion.key;
+        this.db.mutationDeleteItem(key);
+        let deletedKeyNamePairs = this.state.sessionData.keyNamePairs;
+        for (let i = 0; i < deletedKeyNamePairs.length; i++) {
+            let deletedKeyNamePairsKey = deletedKeyNamePairs[i].key;
+            console.log(deletedKeyNamePairsKey);
+            if (deletedKeyNamePairsKey === key) {
+                deletedKeyNamePairs.splice(i, 1);
+                console.log(deletedKeyNamePairs);
+            }
+        }
+        this.setState(prevState => ({
+            keyNamePairMarkedForDeletion: null,
+            sessionData: {
+                nextKey: prevState.sessionData.nextKey,
+                counter: prevState.sessionData.counter,
+                keyNamePairs: deletedKeyNamePairs
+            }
+        }), () => {
+            this.db.mutationUpdateSessionData(this.state.sessionData);
+            this.hideDeleteListModal();
+        });
+    }
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST
     showDeleteListModal() {
@@ -168,6 +192,7 @@ class App extends React.Component {
                 <Statusbar 
                     currentList={this.state.currentList} />
                 <DeleteModal
+                    deletionStartCallback = {this.deletionStart.bind(this)}
                     hideDeleteListModalCallback={this.hideDeleteListModal}
                     keyNamePairMarkedForDeletion={this.state.keyNamePairMarkedForDeletion}
                 />

@@ -1,8 +1,8 @@
 import React from "react";
-
+import Item from "Item.js";
 export default class Workspace extends React.Component {
     render() {
-        const {currentList} = this.props;
+        const {currentList, handleDoubleClickCallback} = this.props;
         if (currentList === null) {
             return (
                 <div id="top5-workspace">
@@ -26,6 +26,7 @@ export default class Workspace extends React.Component {
             )
         }
         else {
+
             return (
                 <div id="top5-workspace">
                     <div id="workspace-edit">
@@ -37,7 +38,7 @@ export default class Workspace extends React.Component {
                             <div className="item-number">5.</div>
                         </div>
                         <div id="edit-items">
-                            <div className="top5-item">{currentList.items[0]}</div>
+                            <div className="top5-item" onDoubleClick={this.handleDoubleClickCallback(0)}>{currentList.items[0]}</div>
                             <div className="top5-item">{currentList.items[1]}</div>
                             <div className="top5-item">{currentList.items[2]}</div>
                             <div className="top5-item">{currentList.items[3]}</div>

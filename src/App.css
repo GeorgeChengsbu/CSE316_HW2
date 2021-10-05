@@ -156,11 +156,18 @@ body {
   display:flex
 }
 
-.top5-button, .top5-button-disabled {
+.top5-button{
   font-size:36pt;
   border-width: 0px;
   float:left;
   color: black;
+  cursor: pointer;
+}
+.top5-button-disabled {
+  font-size:36pt;
+  border-width: 0px;
+  float:left;
+  color: white;
   cursor: pointer;
 }
 

@@ -177,6 +177,7 @@ class App extends React.Component {
                 <Banner 
                     title='Top 5 Lister'
                     closeCurrentListCall={this.closeCurrentList}
+                    currentList = {this.state.currentList}
                     />
                 <Sidebar
                     heading='Your Lists'

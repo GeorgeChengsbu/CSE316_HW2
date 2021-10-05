@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 export default class DeleteModal extends Component {
     render() {
-        const { listKeyPair, hideDeleteListModalCallback } = this.props;
+        const {keyNamePairMarkedForDeletion, hideDeleteListModalCallback } = this.props;
         let name = "";
-        if (listKeyPair) {
-            name = listKeyPair.name;
+        if (keyNamePairMarkedForDeletion) {
+            name = keyNamePairMarkedForDeletion.name;
         }
         return (
             <div

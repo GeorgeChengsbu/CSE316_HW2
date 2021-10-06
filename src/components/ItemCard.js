@@ -19,7 +19,8 @@ export default class ItemCard extends React.Component {
     handleItemClick = (id) => {
         this.setState({
             editActive: !this.state.editActive,
-            item:id
+            item:id,
+            text: this.props.currentList.items[this.props.i]
         });
     }
     handleItemKeyPress = (event) => {
@@ -38,7 +39,7 @@ export default class ItemCard extends React.Component {
         console.log(this.state.editActive);
     }
     render() {
-        const {currentList, i} = this.props;
+        const {currentList, i, renameItemCallback} = this.props;
         if (this.state.editActive) {
             return (
                 <input

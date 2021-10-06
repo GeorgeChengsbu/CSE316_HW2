@@ -70,6 +70,7 @@ class App extends React.Component {
             // PUTTING THIS NEW LIST IN PERMANENT STORAGE
             // IS AN AFTER EFFECT
             this.db.mutationCreateList(newList);
+            this.db.mutationUpdateSessionData(this.state.sessionData);
         });
     }
     renameList = (key, newName) => {
@@ -124,6 +125,16 @@ class App extends React.Component {
         }), () => {
             // ANY AFTER EFFECTS?
         });
+    }
+    moveItems = (oldId, newId) => {
+        let newCurrentList = this.state.currentList;
+        newCurrentList.items.splice(newId, 0, newCurrentList.items.splice(oldId, 1)[0]);
+        this.setState(prevState => ({
+            currentList: newCurrentList
+        }), () => {
+            this.db.mutationUpdateList(this.state.currentList);
+            this.db.mutationUpdateSessionData(this.state.sessionData);
+        })
     }
     renameItem = (id, textValue) => {
         let newCurrentList = this.state.currentList;
@@ -199,6 +210,7 @@ class App extends React.Component {
                 <Workspace
                     currentList={this.state.currentList} 
                     renameItemCallback={this.renameItem}
+                    moveItemCallback={this.moveItems}
                     />
                 <Statusbar 
                     currentList={this.state.currentList} />

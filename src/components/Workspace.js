@@ -2,7 +2,7 @@ import React from "react";
 import ItemCard from "./ItemCard";
 export default class Workspace extends React.Component {
     render() {
-        const {currentList, renameItemCallback} = this.props;
+        const {currentList, renameItemCallback, moveItemCallback} = this.props;
         if (currentList === null) {
             return (
                 <div id="top5-workspace">
@@ -43,6 +43,7 @@ export default class Workspace extends React.Component {
                                     i={0}
                                     currentList={currentList}
                                     renameItemCallback={renameItemCallback}
+                                    moveItemsCallback = {moveItemCallback}
                                     />
                                 }
                             </div>
@@ -51,6 +52,7 @@ export default class Workspace extends React.Component {
                                     i={1}
                                     currentList={currentList}
                                     renameItemCallback={renameItemCallback}
+                                    moveItemsCallback = {moveItemCallback}
                                     />
                                 }</div>
                             <div className="top5-item">{
@@ -58,6 +60,7 @@ export default class Workspace extends React.Component {
                                     i={2}
                                     currentList={currentList}
                                     renameItemCallback={renameItemCallback}
+                                    moveItemsCallback = {moveItemCallback}
                                     />
                                 }</div>
                             <div className="top5-item">{
@@ -65,6 +68,7 @@ export default class Workspace extends React.Component {
                                     i={3}
                                     currentList={currentList}
                                     renameItemCallback={renameItemCallback}
+                                    moveItemsCallback = {moveItemCallback}
                                     />
                                 }</div>
                             <div className="top5-item">{
@@ -72,6 +76,7 @@ export default class Workspace extends React.Component {
                                     i={4}
                                     currentList={currentList}
                                     renameItemCallback={renameItemCallback}
+                                    moveItemsCallback = {moveItemCallback}
                                     />
                                 }</div>
                         </div>

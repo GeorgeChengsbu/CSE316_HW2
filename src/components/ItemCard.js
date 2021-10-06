@@ -39,7 +39,7 @@ export default class ItemCard extends React.Component {
         console.log(this.state.editActive);
     }
     handleDragStart = (event) => {
-        event.dataTransfer.setData("text", event.target.id);
+        event.dataTransfer.setData("text", this.props.i);
     }
     handleDragover = (event) => {
         event.preventDefault();
@@ -50,8 +50,18 @@ export default class ItemCard extends React.Component {
     handleDragLeave = (event) => {
         event.currentTarget.style.background = "#e1e4cb";
     }
+    handleOnDrop = (event) => {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        let oldId = parseInt(data);
+        let newId = parseInt(this.props.i);
+        console.log(oldId);
+        console.log(newId);
+        this.props.moveItemsCallback(oldId, newId);
+        event.currentTarget.style.background = "#e1e4cb";
+    }
     render() {
-        const {currentList, i, renameItemCallback} = this.props;
+        const {currentList, i, renameItemCallback, moveItemsCallback} = this.props;
         if (this.state.editActive) {
             return (
                 <input
@@ -73,6 +83,7 @@ export default class ItemCard extends React.Component {
                     onDragStart = {this.handleDragStart}
                     onDragEnter = {this.handleDragEnter}
                     onDragLeave = {this.handleDragLeave}
+                    onDrop = {this.handleOnDrop}
                     >
                     {currentList.items[i]}
                 </div>

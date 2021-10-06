@@ -38,6 +38,18 @@ export default class ItemCard extends React.Component {
         this.toggleState();
         console.log(this.state.editActive);
     }
+    handleDragStart = (event) => {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+    handleDragover = (event) => {
+        event.preventDefault();
+    }
+    handleDragEnter = (event) => {
+        event.currentTarget.style.background = "#669966";
+    }
+    handleDragLeave = (event) => {
+        event.currentTarget.style.background = "#e1e4cb";
+    }
     render() {
         const {currentList, i, renameItemCallback} = this.props;
         if (this.state.editActive) {
@@ -56,7 +68,12 @@ export default class ItemCard extends React.Component {
             return (
                 <div
                     onDoubleClick={this.handleItemClick}
-                >
+                    draggable = {true}
+                    onDragOver = {this.handleDragover}
+                    onDragStart = {this.handleDragStart}
+                    onDragEnter = {this.handleDragEnter}
+                    onDragLeave = {this.handleDragLeave}
+                    >
                     {currentList.items[i]}
                 </div>
             );

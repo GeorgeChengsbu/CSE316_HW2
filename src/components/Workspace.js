@@ -46,10 +46,34 @@ export default class Workspace extends React.Component {
                                     />
                                 }
                             </div>
-                            <div className="top5-item">{currentList.items[1]}</div>
-                            <div className="top5-item">{currentList.items[2]}</div>
-                            <div className="top5-item">{currentList.items[3]}</div>
-                            <div className="top5-item">{currentList.items[4]}</div>
+                            <div className="top5-item">{
+                                <ItemCard
+                                    i={1}
+                                    currentList={currentList}
+                                    renameItemCallback={renameItemCallback}
+                                    />
+                                }</div>
+                            <div className="top5-item">{
+                                <ItemCard
+                                    i={2}
+                                    currentList={currentList}
+                                    renameItemCallback={renameItemCallback}
+                                    />
+                                }</div>
+                            <div className="top5-item">{
+                                <ItemCard
+                                    i={3}
+                                    currentList={currentList}
+                                    renameItemCallback={renameItemCallback}
+                                    />
+                                }</div>
+                            <div className="top5-item">{
+                                <ItemCard
+                                    i={4}
+                                    currentList={currentList}
+                                    renameItemCallback={renameItemCallback}
+                                    />
+                                }</div>
                         </div>
                     </div>
                 </div>

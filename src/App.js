@@ -125,6 +125,14 @@ class App extends React.Component {
             // ANY AFTER EFFECTS?
         });
     }
+    renameItem = (id, textValue) => {
+        let newCurrentList = this.state.currentList;
+        newCurrentList.items[id] = textValue;
+        this.setState(prevState => ({
+            currentList: newCurrentList
+        }))
+        this.db.mutationUpdateList(this.state.currentList);
+    }
     deleteList = (keyNamePair) => {
         // SOMEHOW YOU ARE GOING TO HAVE TO FIGURE OUT
         // WHICH LIST IT IS THAT THE USER WANTS TO
@@ -189,7 +197,9 @@ class App extends React.Component {
                     renameListCallback={this.renameList}
                 />
                 <Workspace
-                    currentList={this.state.currentList} />
+                    currentList={this.state.currentList} 
+                    renameItemCallback={this.renameItem}
+                    />
                 <Statusbar 
                     currentList={this.state.currentList} />
                 <DeleteModal
